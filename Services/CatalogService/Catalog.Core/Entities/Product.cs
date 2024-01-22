@@ -1,0 +1,49 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Catalog.Core.Entities
+{
+    public class Product:BaseEntity
+    {
+        public string Name { get; set; }
+
+        public string ModelNumber { get; set; }
+        public string ProductDesc { get; set; }
+
+        public string ProductTitle { get; set; }
+
+        public string CountryOfOrigin { get; set; }
+
+        public string Manufacturer { get; set; }
+        public double ProductPrice { get; set; }
+
+
+        public long SellerId { get; set; }
+
+        //[ForeignKey("SellerId")]
+        //public User Seller { get; set; }
+
+        public double NetWieght { get; set; }
+
+        public long Quantity { get; set; }
+
+        public int NetQuantity { get; set; }
+
+        public string DimensionLWH { get; set; }
+        public string Tag { get; set; }
+        public string Color { get; set; }
+        public double Price { get; set; }
+
+
+        public string? Image { get; set; }
+
+        public long ProductSubCategoryId { get; set; }
+
+        [ForeignKey("ProductSubCategoryId")]
+        public virtual ProductSubCategory ProductSubCategory { get; set; }
+    }
+}

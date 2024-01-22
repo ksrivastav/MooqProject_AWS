@@ -1,0 +1,32 @@
+[
+  {
+    "ProductCategoryId": 1,
+    "Name": "Bikes",
+    "Description": "Bikes for all needs",
+    "tags": "Bikes"
+  },
+  {
+    "ProductCategoryId": 2,
+    "Name": "Components",
+    "Description": "Components for all needs",
+    "tags": "Components"
+  },
+  {
+    "ProductCategoryId": 3,
+    "Name": "Clothing",
+    "Description": "Clothing for all needs",
+    "tags": "Clothing"
+  },
+  {
+    "ProductCategoryId": 4,
+    "Name": "Accessories",
+    "Description": "Accessories for all needs",
+    "tags": "Accessories"
+  },
+  {
+    "ProductCategoryId": 5,
+    "Name": "Test Prod Cat2",
+    "Description": "Shoes for all needs",
+    "tags": "shoes"
+  }
+]

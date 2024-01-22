@@ -1,0 +1,32 @@
+[
+  {
+    "Id": 1,
+    "Name": "Bikes",
+    "Description": "Bikes for all needs",
+    "tags": "Bikes"
+  },
+  {
+    "Id": 2,
+    "Name": "Components",
+    "Description": "Components for all needs",
+    "tags": "Components"
+  },
+  {
+    "Id": 3,
+    "Name": "Clothing",
+    "Description": "Clothing for all needs",
+    "tags": "Clothing"
+  },
+  {
+    "Id": 4,
+    "Name": "Accessories",
+    "Description": "Accessories for all needs",
+    "tags": "Accessories"
+  },
+  {
+    "Id": 5,
+    "Name": "Test Prod Cat2",
+    "Description": "Shoes for all needs",
+    "tags": "shoes"
+  }
+]

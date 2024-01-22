@@ -1,0 +1,261 @@
+[
+  {
+    "ProductSubCategoryId": 1,
+    "ProductCategoryId": 1,
+    "Name": "Mountain Bikes",
+    "Description": "Mountain Bikes for all needs",
+    "Tags": "Mountain Bikes"
+  },
+  {
+    "ProductSubCategoryId": 2,
+    "ProductCategoryId": 1,
+    "Name": "Road Bikes",
+    "Description": "Road Bikes for all needs",
+    "Tags": "Road Bikes"
+  },
+  {
+    "ProductSubCategoryId": 3,
+    "ProductCategoryId": 1,
+    "Name": "Touring Bikes",
+    "Description": "Touring Bikes for all needs",
+    "Tags": "Touring Bikes"
+  },
+  {
+    "ProductSubCategoryId": 4,
+    "ProductCategoryId": 2,
+    "Name": "Handlebars",
+    "Description": "Handlebars for all needs",
+    "Tags": "Handlebars"
+  },
+  {
+    "ProductSubCategoryId": 5,
+    "ProductCategoryId": 2,
+    "Name": "Bottom Brackets",
+    "Description": "Bottom Brackets for all needs",
+    "Tags": "Bottom Brackets"
+  },
+  {
+    "ProductSubCategoryId": 6,
+    "ProductCategoryId": 2,
+    "Name": "Brakes",
+    "Description": "Brakes for all needs",
+    "Tags": "Brakes"
+  },
+  {
+    "ProductSubCategoryId": 7,
+    "ProductCategoryId": 2,
+    "Name": "Chains",
+    "Description": "Chains for all needs",
+    "Tags": "Chains"
+  },
+  {
+    "ProductSubCategoryId": 8,
+    "ProductCategoryId": 2,
+    "Name": "Cranksets",
+    "Description": "Cranksets for all needs",
+    "Tags": "Cranksets"
+  },
+  {
+    "ProductSubCategoryId": 9,
+    "ProductCategoryId": 2,
+    "Name": "Derailleurs",
+    "Description": "Derailleurs for all needs",
+    "Tags": "Derailleurs"
+  },
+  {
+    "ProductSubCategoryId": 10,
+    "ProductCategoryId": 2,
+    "Name": "Forks",
+    "Description": "Forks for all needs",
+    "Tags": "Forks"
+  },
+  {
+    "ProductSubCategoryId": 11,
+    "ProductCategoryId": 2,
+    "Name": "Headsets",
+    "Description": "Headsets for all needs",
+    "Tags": "Headsets"
+  },
+  {
+    "ProductSubCategoryId": 12,
+    "ProductCategoryId": 2,
+    "Name": "Mountain Frames",
+    "Description": "Mountain Frames for all needs",
+    "Tags": "Mountain Frames"
+  },
+  {
+    "ProductSubCategoryId": 13,
+    "ProductCategoryId": 2,
+    "Name": "Pedals",
+    "Description": "Pedals for all needs",
+    "Tags": "Pedals"
+  },
+  {
+    "ProductSubCategoryId": 14,
+    "ProductCategoryId": 2,
+    "Name": "Road Frames",
+    "Description": "Road Frames for all needs",
+    "Tags": "Road Frames"
+  },
+  {
+    "ProductSubCategoryId": 15,
+    "ProductCategoryId": 2,
+    "Name": "Saddles",
+    "Description": "Saddles for all needs",
+    "Tags": "Saddles"
+  },
+  {
+    "ProductSubCategoryId": 16,
+    "ProductCategoryId": 2,
+    "Name": "Touring Frames",
+    "Description": "Touring Frames for all needs",
+    "Tags": "Touring Frames"
+  },
+  {
+    "ProductSubCategoryId": 17,
+    "ProductCategoryId": 2,
+    "Name": "Wheels",
+    "Description": "Wheels for all needs",
+    "Tags": "Wheels"
+  },
+  {
+    "ProductSubCategoryId": 18,
+    "ProductCategoryId": 3,
+    "Name": "Bib-Shorts",
+    "Description": "Bib-Shorts for all needs",
+    "Tags": "Bib-Shorts"
+  },
+  {
+    "ProductSubCategoryId": 19,
+    "ProductCategoryId": 3,
+    "Name": "Caps",
+    "Description": "Caps for all needs",
+    "Tags": "Caps"
+  },
+  {
+    "ProductSubCategoryId": 20,
+    "ProductCategoryId": 3,
+    "Name": "Gloves",
+    "Description": "Gloves for all needs",
+    "Tags": "Gloves"
+  },
+  {
+    "ProductSubCategoryId": 21,
+    "ProductCategoryId": 3,
+    "Name": "Jerseys",
+    "Description": "Jerseys for all needs",
+    "Tags": "Jerseys"
+  },
+  {
+    "ProductSubCategoryId": 22,
+    "ProductCategoryId": 3,
+    "Name": "Shorts",
+    "Description": "Shorts for all needs",
+    "Tags": "Shorts"
+  },
+  {
+    "ProductSubCategoryId": 23,
+    "ProductCategoryId": 3,
+    "Name": "Socks",
+    "Description": "Socks for all needs",
+    "Tags": "Socks"
+  },
+  {
+    "ProductSubCategoryId": 24,
+    "ProductCategoryId": 3,
+    "Name": "Tights",
+    "Description": "Tights for all needs",
+    "Tags": "Tights"
+  },
+  {
+    "ProductSubCategoryId": 25,
+    "ProductCategoryId": 3,
+    "Name": "Vests",
+    "Description": "Vests for all needs",
+    "Tags": "Vests"
+  },
+  {
+    "ProductSubCategoryId": 26,
+    "ProductCategoryId": 4,
+    "Name": "Bike Racks",
+    "Description": "Bike Racks for all needs",
+    "Tags": "Bike Racks"
+  },
+  {
+    "ProductSubCategoryId": 27,
+    "ProductCategoryId": 4,
+    "Name": "Bike Stands",
+    "Description": "Bike Stands for all needs",
+    "Tags": "Bike Stands"
+  },
+  {
+    "ProductSubCategoryId": 28,
+    "ProductCategoryId": 4,
+    "Name": "Bottles and Cages",
+    "Description": "Bottles and Cages for all needs",
+    "Tags": "Bottles and Cages"
+  },
+  {
+    "ProductSubCategoryId": 29,
+    "ProductCategoryId": 4,
+    "Name": "Cleaners",
+    "Description": "Cleaners for all needs",
+    "Tags": "Cleaners"
+  },
+  {
+    "ProductSubCategoryId": 30,
+    "ProductCategoryId": 4,
+    "Name": "Fenders",
+    "Description": "Fenders for all needs",
+    "Tags": "Fenders"
+  },
+  {
+    "ProductSubCategoryId": 31,
+    "ProductCategoryId": 4,
+    "Name": "Helmets",
+    "Description": "Helmets for all needs",
+    "Tags": "Helmets"
+  },
+  {
+    "ProductSubCategoryId": 32,
+    "ProductCategoryId": 4,
+    "Name": "Hydration Packs",
+    "Description": "Hydration Packs for all needs",
+    "Tags": "Hydration Packs"
+  },
+  {
+    "ProductSubCategoryId": 33,
+    "ProductCategoryId": 4,
+    "Name": "Lights",
+    "Description": "Lights for all needs",
+    "Tags": "Lights"
+  },
+  {
+    "ProductSubCategoryId": 34,
+    "ProductCategoryId": 4,
+    "Name": "Locks",
+    "Description": "Locks for all needs",
+    "Tags": "Locks"
+  },
+  {
+    "ProductSubCategoryId": 35,
+    "ProductCategoryId": 4,
+    "Name": "Panniers",
+    "Description": "Panniers for all needs",
+    "Tags": "Panniers"
+  },
+  {
+    "ProductSubCategoryId": 36,
+    "ProductCategoryId": 4,
+    "Name": "Pumps",
+    "Description": "Pumps for all needs",
+    "Tags": "Pumps"
+  },
+  {
+    "ProductSubCategoryId": 37,
+    "ProductCategoryId": 4,
+    "Name": "Tires and Tubes",
+    "Description": "Tires and Tubes for all needs",
+    "Tags": "Tires and Tubes"
+  }
+]

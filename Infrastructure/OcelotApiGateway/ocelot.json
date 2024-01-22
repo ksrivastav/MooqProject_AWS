@@ -1,0 +1,125 @@
+{
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7104"
+  },
+  "Routes": [
+    //basket getBasket
+    {
+      "UpstreamPathTemplate": "/mooq/basket/{userName}",
+      "UpstreamHttpMethod": [ "Get", "Delete", "POST", "PUT" ],
+      "DownstreamPathTemplate": "/api/Basket/GetBasket/{userName}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7290
+        }
+      ]
+    }, //basket UpdateBasket
+    {
+      "UpstreamPathTemplate": "/mooq/updatebasket",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamPathTemplate": "/api/Basket/UpdateBasket",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7290
+        }
+      ]
+    }, //basket CheckoutBasket
+    {
+      "UpstreamPathTemplate": "/mooq/checkoutbasket",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamPathTemplate": "/api/Basket/Checkout",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7290
+        }
+      ]
+    }, //catalog
+    {
+      "UpstreamPathTemplate": "/mooq/Products",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/v1/Command/getAllProducts",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7101
+        }
+      ]
+    },
+    //Catalog
+    {
+      "UpstreamPathTemplate": "/mooq/ProductCategory",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/v1/Command/getAllProductCategory",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7101
+        }
+      ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "10s",
+        "PeriodTimespan": 10,
+        "Limit": 3
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/mooq/ProductSubCategory",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/v1/Command/getAllProductSubCategory",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7101
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/mooq/CreateProduct",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/v1/Command/createProduct",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7101
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/mooq/UserOrder/{UserName}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/Order/getOrderbyUsername?userName={UserName}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7026
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/mooq/NewOrder",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/Order/createOrder",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7026
+        }
+      ]
+    }
+
+  ]
+}
