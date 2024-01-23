@@ -25,10 +25,7 @@ namespace Basket.Api.Controllers
             basketRepository = _basketRepository;
            // publishEndpoint = _publishEndpoint;
         }
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
+       
 
         [HttpGet("{userName}")]
         [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
