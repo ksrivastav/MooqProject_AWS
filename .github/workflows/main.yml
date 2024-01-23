@@ -11,7 +11,7 @@ jobs:
            packages: write
     steps:
       - name: check out code
-        uses: action/checkout @v4
+        uses: actions/checkout@v4
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
