@@ -2,7 +2,7 @@ name: deploy to ecr
 'on':
   push : 
    branches:
-        [ master ]
+        [ "master" ]
 jobs:
   build:
     name: moq_build_image
@@ -11,7 +11,8 @@ jobs:
            packages: write
     steps:
       - name: check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
+        
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
