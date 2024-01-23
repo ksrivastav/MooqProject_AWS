@@ -7,7 +7,8 @@ jobs:
   build:
     name: moq_build_image
     runs-on: ubuntu-latest
-    permissions: write-all
+    permissions:
+           packages: write
     steps:
       - name: check out code
         uses: action/checkout @v2
