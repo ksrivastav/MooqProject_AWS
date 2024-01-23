@@ -65,6 +65,9 @@ namespace Basket.Api.Controllers
             eventMesg.CorrelationId = Guid.NewGuid().ToString();
             //await publishEndpoint.Publish<BasketCheckoutEvent>(eventMesg);
 
+            //added comment here
+
+
             //var deleteQuery = basketRepository.DeleteBasket(basketCheckout.UserName);
             return Accepted();
 
