@@ -11,6 +11,9 @@ using Amazon.CognitoIdentityProvider.Model;
 using System.Reflection;
 using Amazon.Runtime.Internal;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.Extensions.Caching.Memory;
+using Amazon.SecretsManager.Model;
+using Newtonsoft.Json.Linq;
 namespace IdentityServerCognito.Controllers
 {
     [ApiController]
@@ -20,17 +23,25 @@ namespace IdentityServerCognito.Controllers
         private readonly AppConfig _cloudConfig;
         private readonly AmazonCognitoIdentityProviderClient _provider;
         private readonly CognitoUserPool _userPool;
-      //  private readonly UserContextManager _userManager;
+        private IdentityCognitoConfigretriever _config;
+        //  private readonly UserContextManager _userManager;
         private readonly HttpContext _httpContext;
+        IMemoryCache _memoryCache;
 
-        public UserController(IOptions<AppConfig> appConfig,  IHttpContextAccessor httpContextAccessor)  //UserContextManager userManager
+        public UserController(IOptions<AppConfig> appConfig,  IHttpContextAccessor httpContextAccessor, IdentityCognitoConfigretriever Config, IMemoryCache memoryCache)  //UserContextManager userManager
         {
-            _cloudConfig = appConfig.Value;
+             
+            _memoryCache = memoryCache;
+            var response1 = _memoryCache.TryGetValue<GetSecretValueResponse>("IdentityConfigData", out GetSecretValueResponse configResponse);
+            var secrets = JObject.Parse(configResponse.SecretString);
             _provider = new AmazonCognitoIdentityProviderClient(
-               _cloudConfig.AccessKeyId, _cloudConfig.AccessSecretKey, RegionEndpoint.GetBySystemName(_cloudConfig.Region));
-            _userPool = new CognitoUserPool(_cloudConfig.UserPoolId, _cloudConfig.AppClientId, _provider);
-        //    _userManager = userManager;
+                 secrets["AccessKeyId"].ToString(),
+               secrets["AccessSecretKey"].ToString(), 
+               RegionEndpoint.GetBySystemName(secrets["Region"].ToString())) ;
+            _userPool = new CognitoUserPool(secrets["UserPoolId"].ToString(), secrets["AppClientId"].ToString(), _provider);
+            //    _userManager = userManager;
             _httpContext = httpContextAccessor.HttpContext;
+            
         }
         //public IActionResult Index()
         //{
@@ -50,7 +61,7 @@ namespace IdentityServerCognito.Controllers
             //newUser.UserAttributes.Add(
             //    new AttributeType { Name = "Email", Value = email }
             //    );
-            newUser.UserAttributes.Add(new AttributeType { Name= "given_name", Value= email });
+            newUser.UserAttributes.Add(new AttributeType { Name = "given_name", Value = email });
             newUser.UserAttributes.Add(new AttributeType { Name = "email", Value = email });
             newUser.UserAttributes.Add(new AttributeType { Name = "gender", Value = "Male" });
             newUser.UserAttributes.Add(new AttributeType { Name = "phone_number", Value = "+918448800770" });
@@ -77,7 +88,7 @@ namespace IdentityServerCognito.Controllers
         [HttpGet]
         public async Task<IActionResult> AuthenticateUserAsync(string email, string password)
         {
-            CognitoUser user = new CognitoUser(email, _cloudConfig.AppClientId, _userPool, _provider);
+            CognitoUser user = new CognitoUser(email, _userPool.ClientID, _userPool, _provider);
             InitiateSrpAuthRequest userrequest = new InitiateSrpAuthRequest()
             {
                 Password = password,
@@ -91,6 +102,10 @@ namespace IdentityServerCognito.Controllers
         [HttpGet]
         public async Task<IActionResult> UserLogin(string email, string password)
         {
+            //var response = _memoryCache.TryGetValue<GetSecretValueResponse>("IdentityConfigData", out GetSecretValueResponse configResponse);
+            //IdentityCognitoConfigretriever getConfig = new IdentityCognitoConfigretriever();
+            //var configData = await getConfig.GetConfig();
+           // _memoryCache.Set<GetSecretValueResponse>("IdentityConfigData", configData);
             var result = await AuthenticateUserAsync(email, password);
             return Ok(result);
         }

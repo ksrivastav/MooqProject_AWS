@@ -1,9 +1,15 @@
 using Amazon.CognitoIdentity;
 using Amazon.CognitoIdentityProvider;
 using Amazon.Extensions.CognitoAuthentication;
+using IdentityServerCognito;
 using IdentityServerCognito.ConfigData;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using IdentityServerCognito.CustomMiddleware;
+using Amazon.Runtime;
+using Microsoft.Extensions.DependencyInjection;
+using Amazon.Extensions.NETCore.Setup;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +20,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCognitoIdentity();
+builder.Services.AddSingleton<IdentityCognitoConfigretriever>();
+builder.Services.AddTransient<CacheMiddleware>();
+builder.Services.AddMemoryCache();
 builder.Services.Configure<AppConfig>(builder.Configuration.GetSection("AWS"));
+
+AWSOptions option = new AWSOptions();
+option.Profile = "default";
+builder.Services.AddDefaultAWSOptions(option);
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -44,6 +57,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<CacheMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
