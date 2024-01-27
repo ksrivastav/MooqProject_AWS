@@ -25,7 +25,7 @@ namespace IdentityServerCognito
 
             
             
-           //AWSCredentials cred = new BasicAWSCredentials("AKIA33FJH4VCZCWWA5GM", "gMrZqngBUIaHMp2V4c9w4OpeDbilkilL4m68SVit");
+           
             IAmazonSecretsManager client = new AmazonSecretsManagerClient(RegionEndpoint.GetBySystemName(region));
 
 
