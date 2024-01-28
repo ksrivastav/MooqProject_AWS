@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Order.Core.Entities
+﻿using AWSSDK;
+namespace EVENTSQSProject
 {
-    public class Order
+    public class OrderCreatedEvent
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         //Below Properties are Audit properties
-
         public Guid OrderEventId { get; set; }
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
@@ -35,5 +25,6 @@ namespace Order.Core.Entities
         public string? Cvv { get; set; }
         public int? PaymentMethod { get; set; }
         public int? Productid { get; set; }
+
     }
 }

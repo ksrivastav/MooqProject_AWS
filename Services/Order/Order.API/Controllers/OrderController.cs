@@ -3,7 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 using Order.Core.Repository;
 using Order.Application.Command;
 using Order.Application.Querry;
+using Amazon.SQS;
+using Microsoft.AspNetCore.Identity;
+using Order.Application.Mapper;
+using Order.Application.Responce;
+using Order.Core.Entities;
+using Amazon.SQS.Model;
+using Newtonsoft.Json;
 namespace Order.API.Controllers
+
 {
     [ApiController]
     //[Route("api/v{version:aspVersion}/[controller]")]
@@ -12,11 +20,12 @@ namespace Order.API.Controllers
     {
         IMediator mediator;
         IOrderRepository<Order.Core.Entities.Order> orderRepository;
-
-        public OrderController(IMediator _mediator, IOrderRepository<Order.Core.Entities.Order> _orderRepository)
+        private readonly IAmazonSQS _sqsClient;
+        public OrderController(IAmazonSQS sqsClient,IMediator _mediator, IOrderRepository<Order.Core.Entities.Order> _orderRepository)
         {
             mediator = _mediator;
             orderRepository = _orderRepository;
+            _sqsClient = sqsClient;
 
         }
         [HttpGet()]
@@ -45,9 +54,18 @@ namespace Order.API.Controllers
         public async Task<IActionResult> createOrder([FromBody] CreateOrderCommand OrderCommand)
         {
 
-            var i = await mediator.Send(OrderCommand);
-            //var prodResponce = LazyMapper.MapperLazy.Map<IList<ProductCategory>, IList<ProductResponce>>(ii);
-            return Ok(i);
+           // var i = await mediator.Send(OrderCommand);
+          //  var orderResponce = LazyMapper.MapperLazy.Map<OrderResponce, Order.Core.Entities.Order>(i);
+
+            SendMessageRequest smr = new SendMessageRequest();
+            smr.QueueUrl = "https://sqs.eu-west-2.amazonaws.com/814251238725/MooqSQS.fifo";
+            smr.MessageBody = JsonConvert.SerializeObject(OrderCommand);
+            smr.MessageGroupId = "123456";
+            smr.MessageDeduplicationId= Guid.NewGuid().ToString();  
+
+            var res = await _sqsClient.SendMessageAsync(smr);
+            
+            return Ok(OrderCommand);
 
         }
 

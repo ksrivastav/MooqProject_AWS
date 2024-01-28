@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Order.Application.Querry;
 using MassTransit;
 using System.Reflection;
+using Amazon.SQS;
+using Amazon.Extensions.NETCore.Setup;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,7 +24,10 @@ builder.Services.AddDbContext<DaffECommerceDbContext>(options => {
 
 builder.Services.AddTransient<IOrderRepository<Order.Core.Entities.Order>, OrderRepository>();
 builder.Services.AddTransient<Order.Core.Entities.Order>();
-
+builder.Services.AddAWSService<IAmazonSQS>();
+AWSOptions option = new AWSOptions();
+option.Profile = "default";
+builder.Services.AddDefaultAWSOptions(option);
 
 //builder.Services.AddMassTransit(config =>
 //{
