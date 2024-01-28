@@ -58,7 +58,7 @@ namespace Order.API.Controllers
           //  var orderResponce = LazyMapper.MapperLazy.Map<OrderResponce, Order.Core.Entities.Order>(i);
 
             SendMessageRequest smr = new SendMessageRequest();
-            smr.QueueUrl = "https://sqs.eu-west-2.amazonaws.com/814251238725/MooqSQS.fifo";
+            smr.QueueUrl = "https:/";
             smr.MessageBody = JsonConvert.SerializeObject(OrderCommand);
             smr.MessageGroupId = "123456";
             smr.MessageDeduplicationId= Guid.NewGuid().ToString();  
