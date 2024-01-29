@@ -1,4 +1,4 @@
-name: deploy to ecr
+name: Identity Cognito deploy to ecr
 'on':
   push : 
    branches:
