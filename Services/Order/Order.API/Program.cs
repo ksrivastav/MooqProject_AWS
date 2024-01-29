@@ -7,6 +7,10 @@ using MassTransit;
 using System.Reflection;
 using Amazon.SQS;
 using Amazon.Extensions.NETCore.Setup;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -29,25 +33,27 @@ AWSOptions option = new AWSOptions();
 option.Profile = "default";
 builder.Services.AddDefaultAWSOptions(option);
 
-//builder.Services.AddMassTransit(config =>
-//{
-//    config.AddConsumers(Assembly.GetExecutingAssembly());
-//    config.UsingRabbitMq((ctx, cfg) =>
-//    {
-//        cfg.Host(new Uri(builder.Configuration["ServiceBus:Uri"]),
-//        h =>
-//        {
-//            h.Username(builder.Configuration["ServiceBus:Username"]);
-//            h.Password(builder.Configuration["ServiceBus:Password"]);
-//        });
-//        cfg.ConfigureEndpoints(ctx);
-//        //cfg.ReceiveEndpoint(builder.Configuration["ServiceBus:Queue"],
-//        //    c => c.ConfigureConsumer<OrderConsumer>(ctx)
-
-
-//        //    ); 
-//    });
-//});
+builder.Services.AddCognitoIdentity();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.Authority = $"https://cognito-idp.us-east-1.amazonaws.com/us-east-1_JqsS6MxYl";   //builder.Configuration["Cognito:Authority"];
+    options.RequireHttpsMetadata = false;
+    //var key = Encoding.UTF8.GetBytes(builder.Configuration["AppSettings:Token"]);
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+       // ValidateIssuerSigningKey = true,
+        ValidIssuer = $"https://cognito-idp.us-east-1.amazonaws.com/us-east-1_JqsS6MxYl",
+        ValidateAudience = false,
+        ValidateIssuer = true
+        //IssuerSigningKey = new SymmetricSecurityKey(key)
+    };
+});
 
 var app = builder.Build();
 
@@ -59,6 +65,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseAuthorization();
 

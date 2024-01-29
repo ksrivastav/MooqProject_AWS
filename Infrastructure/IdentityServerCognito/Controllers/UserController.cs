@@ -99,7 +99,13 @@ namespace IdentityServerCognito.Controllers
 
             AuthFlowResponse authFlowResponse = await user.StartWithSrpAuthAsync(userrequest);
             var result = authFlowResponse.AuthenticationResult;
+            string i = result.AccessToken.ToString()+ "\r\n"
+                + result.RefreshToken.ToString() + "\r\n"
+                + result.TokenType.ToString()+ "\r\n"
+                + result.ExpiresIn.ToString();
+
             return Ok(new Tuple<CognitoUser, AuthenticationResultType>(user, result));
+            //return Ok(i);
         }
 
         [HttpGet]

@@ -10,12 +10,14 @@ using Order.Application.Responce;
 using Order.Core.Entities;
 using Amazon.SQS.Model;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 namespace Order.API.Controllers
 
 {
     [ApiController]
     //[Route("api/v{version:aspVersion}/[controller]")]
     [Route("api/[controller]/[action]")]
+    [Authorize]
     public class OrderController : Controller
     {
         IMediator mediator;
