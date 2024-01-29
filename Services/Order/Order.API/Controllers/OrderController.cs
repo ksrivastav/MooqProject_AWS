@@ -28,7 +28,7 @@ namespace Order.API.Controllers
             _sqsClient = sqsClient;
 
         }
-        [HttpGet()]
+       // [HttpGet()]
         //public async Task<IActionResult> getAllProducts([FromQuery] ProductSpecs productSpecs)
         //{
 
@@ -69,6 +69,11 @@ namespace Order.API.Controllers
 
         }
 
+        [HttpGet()]
+        public async Task<IActionResult> getOrderDummy(string userName)
+        {
 
-    }
+            return Ok("This is test api");
+
+        }
 }
