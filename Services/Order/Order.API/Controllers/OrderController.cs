@@ -21,14 +21,14 @@ namespace Order.API.Controllers
         IMediator mediator;
         IOrderRepository<Order.Core.Entities.Order> orderRepository;
         private readonly IAmazonSQS _sqsClient;
-        public OrderController(IAmazonSQS sqsClient,IMediator _mediator, IOrderRepository<Order.Core.Entities.Order> _orderRepository)
+        public OrderController(IAmazonSQS sqsClient, IMediator _mediator, IOrderRepository<Order.Core.Entities.Order> _orderRepository)
         {
             mediator = _mediator;
             orderRepository = _orderRepository;
             _sqsClient = sqsClient;
 
         }
-       // [HttpGet()]
+        // [HttpGet()]
         //public async Task<IActionResult> getAllProducts([FromQuery] ProductSpecs productSpecs)
         //{
 
@@ -49,22 +49,22 @@ namespace Order.API.Controllers
             var result = await mediator.Send(querry);
             return Ok(result);
         }
-       
+
         [HttpPost()]
         public async Task<IActionResult> createOrder([FromBody] CreateOrderCommand OrderCommand)
         {
 
-           // var i = await mediator.Send(OrderCommand);
-          //  var orderResponce = LazyMapper.MapperLazy.Map<OrderResponce, Order.Core.Entities.Order>(i);
+            // var i = await mediator.Send(OrderCommand);
+            //  var orderResponce = LazyMapper.MapperLazy.Map<OrderResponce, Order.Core.Entities.Order>(i);
 
             SendMessageRequest smr = new SendMessageRequest();
             smr.QueueUrl = "https://sqs.us-east-1.amazonaws.com/851725404986/MooqSQS.fifo";
             smr.MessageBody = JsonConvert.SerializeObject(OrderCommand);
             smr.MessageGroupId = "123456";
-            smr.MessageDeduplicationId= Guid.NewGuid().ToString();  
+            smr.MessageDeduplicationId = Guid.NewGuid().ToString();
 
             var res = await _sqsClient.SendMessageAsync(smr);
-            
+
             return Ok(OrderCommand);
 
         }
@@ -76,4 +76,5 @@ namespace Order.API.Controllers
             return Ok("This is test api");
 
         }
+    }
 }
