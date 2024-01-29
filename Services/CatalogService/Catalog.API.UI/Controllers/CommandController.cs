@@ -80,5 +80,15 @@ namespace Catalog.API.Controllers
 
         }
 
+
+
+        [HttpGet()]
+        public async Task<IActionResult> getAllProductCategoryList()
+        {
+            string result = "Hey you hit the api";
+            return Ok(result);
+
+        }
+
     }
 }
