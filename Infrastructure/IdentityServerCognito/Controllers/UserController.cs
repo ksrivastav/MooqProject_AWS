@@ -27,7 +27,7 @@ namespace IdentityServerCognito.Controllers
         //  private readonly UserContextManager _userManager;
         private readonly HttpContext _httpContext;
         IMemoryCache _memoryCache;
-
+        string curAppClientId;
         public UserController(IOptions<AppConfig> appConfig,  IHttpContextAccessor httpContextAccessor, IdentityCognitoConfigretriever Config, IMemoryCache memoryCache)  //UserContextManager userManager
         {
              
@@ -41,7 +41,9 @@ namespace IdentityServerCognito.Controllers
             _userPool = new CognitoUserPool(secrets["UserPoolId"].ToString(), secrets["AppClientId"].ToString(), _provider);
             //    _userManager = userManager;
             _httpContext = httpContextAccessor.HttpContext;
-            
+            curAppClientId = secrets["AppClientId"].ToString();
+
+
         }
         //public IActionResult Index()
         //{
@@ -54,7 +56,7 @@ namespace IdentityServerCognito.Controllers
         {
             SignUpRequest newUser = new SignUpRequest
             {
-                ClientId = _cloudConfig.AppClientId,
+                ClientId = _userPool.ClientID,
                 Password = password,
                 Username = email
             };
@@ -63,6 +65,7 @@ namespace IdentityServerCognito.Controllers
             //    );
             newUser.UserAttributes.Add(new AttributeType { Name = "given_name", Value = email });
             newUser.UserAttributes.Add(new AttributeType { Name = "email", Value = email });
+            newUser.UserAttributes.Add(new AttributeType { Name = "address", Value = email });
             newUser.UserAttributes.Add(new AttributeType { Name = "gender", Value = "Male" });
             newUser.UserAttributes.Add(new AttributeType { Name = "phone_number", Value = "+918448800770" });
             var result = await _provider.SignUpAsync(newUser);
@@ -75,7 +78,7 @@ namespace IdentityServerCognito.Controllers
         {
             ConfirmSignUpRequest confirmUserRequest = new ConfirmSignUpRequest
             {
-                ClientId = _cloudConfig.AppClientId,
+                ClientId = _userPool.ClientID,
                 ConfirmationCode = confirmationCode,
                 Username = email
 

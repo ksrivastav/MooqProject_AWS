@@ -20,7 +20,7 @@ namespace IdentityServerCognito
         {
              GetSecretValueResponse response;
              string secretName = "IdentityServerConfig";
-             string region = "eu-west-2";
+             string region = "us-east-1";
              var i = RegionEndpoint.GetBySystemName(region);
 
             
