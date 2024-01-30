@@ -17,7 +17,7 @@ namespace Order.API.Controllers
     [ApiController]
     //[Route("api/v{version:aspVersion}/[controller]")]
     [Route("api/[controller]/[action]")]
-    [Authorize]
+    [Authorize(Roles ="Customer")]
     public class OrderController : Controller
     {
         IMediator mediator;

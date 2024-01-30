@@ -50,7 +50,8 @@ builder.Services.AddAuthentication(options =>
        // ValidateIssuerSigningKey = true,
         ValidIssuer = $"https://cognito-idp.us-east-1.amazonaws.com/us-east-1_JqsS6MxYl",
         ValidateAudience = false,
-        ValidateIssuer = true
+        ValidateIssuer = true,
+        RoleClaimType = "cognito:groups"
         //IssuerSigningKey = new SymmetricSecurityKey(key)
     };
 });
